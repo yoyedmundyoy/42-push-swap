@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etong <etong@student.42.fr>                +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/05 16:43:38 by etong             #+#    #+#             */
-/*   Updated: 2024/06/10 07:32:47 by etong            ###   ########.fr       */
+/*   Updated: 2024/08/17 08:49:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static char	**append_word(char **result, char *word, int n_words)
 	char	**new_result;
 	int		i;
 
-	new_result = malloc(sizeof(char *) * n_words + 1);
+	new_result = malloc(sizeof(char *) * (n_words + 1));
 	if (!new_result)
 		return (0);
 	i = 0;

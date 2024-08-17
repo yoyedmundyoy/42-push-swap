@@ -34,6 +34,23 @@ static t_node *parse_unquoted(int argc, char *argv[])
     return (stack);
 }
 
+static int check_dup(t_node *stack)
+{
+    t_node *tmp;
+
+    while (stack)
+    {
+        tmp = stack->next;
+        while (tmp)
+        {
+            if (stack->num == tmp->num)
+                return (1);
+            tmp = tmp->next;
+        }
+        stack = stack->next;
+    }
+    return (0);
+}
 
 t_node *parse_args(int argc, char *argv[])
 {
@@ -41,16 +58,15 @@ t_node *parse_args(int argc, char *argv[])
 
     a = NULL;
     if (argc < 2)
-    {
         handle_error();
-    }
     else if (argc == 2)
-    {
         a = parse_quoted(argv[1]);
-    }
     else
-    {
         a = parse_unquoted(argc, argv);
+    if (check_dup(a))
+    {
+        free_stack(&a);
+        handle_error();
     }
     return (a);
 }
