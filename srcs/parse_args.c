@@ -11,6 +11,8 @@ static t_node *parse_quoted(char *nums)
     i = 0;
     while (num_arr[i])
     {
+        if (handle_atoi(num_arr[i]) == -1)
+            handle_error();
         add_back(&stack, create_node(ft_atoi(num_arr[i])));
         free(num_arr[i]);
         ++i;
@@ -28,6 +30,8 @@ static t_node *parse_unquoted(int argc, char *argv[])
     i = 1;
     while (i < argc)
     {
+        if (handle_atoi(argv[i]) == -1)
+            handle_error();
         add_back(&stack, create_node(ft_atoi(argv[i])));
         ++i;
     }
