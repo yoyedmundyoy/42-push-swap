@@ -13,6 +13,21 @@ void	add_back(t_node **lst, t_node *new)
 	last->next = new;
 }
 
+void	remove_back(t_node *lst, t_node *last)
+{	
+	if (!lst)
+		return ;
+	while (lst)
+	{
+		if (lst->next == last)
+		{
+			lst->next = NULL;
+			return ;
+		}
+		lst = lst->next;
+	}
+}
+
 t_node *create_node(int n)
 {
     t_node *node;
@@ -49,7 +64,7 @@ t_node	*lstlast(t_node *lst)
 	return (lst);
 }
 
-int stack_sorted(t_node *lst)
+int check_sorted(t_node *lst)
 {
 	int prev_num;
 
@@ -75,4 +90,14 @@ int	lstsize(t_node *lst)
 		++i;
 	}
 	return (i);
+}
+
+void print_stack(t_node *lst)
+{
+	while (lst)
+	{
+		printf("%ld ", lst->num);
+		lst = lst->next;
+	}
+	printf("\n");
 }
