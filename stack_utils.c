@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	add_back(t_node **lst, t_node *new)
 {

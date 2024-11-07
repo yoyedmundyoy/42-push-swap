@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void push_sort_b(t_node **a, t_node **b)
 {

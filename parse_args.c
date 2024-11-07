@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 static t_node *parse_quoted(char *nums)
 {

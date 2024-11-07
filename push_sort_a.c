@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void push_sort_a(t_node **a, t_node **b)
 {
@@ -65,8 +65,8 @@ int cost_rarrb_ba(t_node *a, t_node *b, int num)
     int i;
 
     i = 0;
-    if (find_target_index_a(b, num))
-        i = lstsize(b) - find_target_index_a(b, num);
+    if (find_target_index_a(a, num))
+        i = lstsize(a) - find_target_index_a(a, num);
     i = i + find_index(b, num);
     return (i);
 }

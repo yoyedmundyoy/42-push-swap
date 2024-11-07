@@ -1,4 +1,4 @@
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 int	handle_atoi(const char *str)
 {
@@ -19,8 +19,8 @@ int	handle_atoi(const char *str)
 		++ptr;
 	}
 	num = 0;
-    if (!ft_isdigit(*ptr))
-        return (-1);
+	if (!ft_isdigit(*ptr))
+    	return (-1);
 	while (ft_isdigit(*ptr))
 	{
 		num = (num * 10) + (*ptr - '0');
