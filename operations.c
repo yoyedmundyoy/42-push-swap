@@ -6,7 +6,7 @@ void sa(t_node **a, int print)
 {
     t_node *tmp;
 
-    if (!(*a) || lstsize(*a) < 2)
+    if (!(*a) || !((*a)->next) || lstsize(*a) < 2)
         return ;
     tmp = *a;
     (*a) = (*a)->next;
@@ -22,7 +22,7 @@ void sb(t_node **b, int print)
 {
     t_node *tmp;
 
-    if (!(*b) || lstsize(*b) < 2)
+    if (!(*b) || !((*b)->next) || lstsize(*b) < 2)
         return ;
     tmp = *b;
     (*b) = (*b)->next;

@@ -1,35 +1,49 @@
-LIBFT		:= 	libft/libft.a
-PUSH_SWAP	:= 	push_swap
-CHECKER		:= 	checker
-CC 			:= 	gcc
-CFLAGS		:= 	-Wall -Werror -Wextra
+NAME = push_swap
+CC = gcc
+RM = rm -f
+FLAGS = -Wall -Wextra -Werror
+LIBFTDIR = libft/
+BONUS = checker
 
-SRC_PS 		:= 	push_swap.c
-SRC_CK		:= 	checker.c
-SRCS 		:= 	handle_atoi.c handle_error.c operations.c \
+SRC_1		:= 	push_swap.c
+SRC_2 		:= 	handle_atoi.c handle_error.c operations.c \
 				parse_args.c push_sort_a.c push_sort_b.c \
 				sort.c stack_utils.c
 
-OBJS 		:= $(SRCS:.c=.o)
-AR 			:= ar rc
-RM 			:= rm -f
+BONUS_SRC	:= checker.c
 
-.PHONY: all clean fclean re
+OBJ_1 = ${SRC_1:.c=.o}
+OBJ_2 = ${SRC_2:.c=.o}
 
-all: $(PUSH_SWAP)
+BONUS_OBJ =${BONUS_SRC:.c=.o}
 
-$(PUSH_SWAP):
-	$(CC) $(CFLAGS) -o $(PUSH_SWAP) $(SRC_PS) $(SRCS) $(LIBFT) 
-#	$(CC) $(CFLAGS) -o $(FILE_CK) $(SRC_CK) $(NAME) $(LIBFT) 
-#	make clean
+INCLUDE = -L ./libft -lft
 
-$(CHECKER):
-	echo to do checker
+.c.o:
+	${CC} -c $< -o ${<:.c=.o}
+
+${NAME}: ${OBJ_1} ${OBJ_2}
+	make -C $(LIBFTDIR)
+	${CC} ${FLAGS} ${OBJ_1} ${OBJ_2} -o ${NAME} ${INCLUDE}
+
+${BONUS}: ${OBJ_2} ${BONUS_OBJ} 
+	make -C $(LIBFTDIR)
+	${CC} ${FLAGS} ${BONUS_OBJ} ${OBJ_2} -o ${BONUS} ${INCLUDE}
+
+all: ${NAME} ${BONUS}
+
+bonus: ${BONUS} 
 
 clean:
-	$(RM) $(OBJS)
+	${RM} ${OBJ_1} ${OBJ_2} ${BONUS_OBJ} ${NAME} ${BONUS}
+	@cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean: clean
-	$(RM) $(NAME) $(FILE_PS) $(FILE_CK)
+	${RM} ${NAME}
+	@cd $(LIBFTDIR) && $(MAKE) fclean
 
-re: fclean all
+re: clean all
+
+.PHONY: all clean fclean re bonus
+
+
